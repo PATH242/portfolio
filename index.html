@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menna A. Awadallah Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one 720px reading column, three case studies, a playable phone prototype in the second. */
+:root{
+  --bg:#E8ECE9;
+  --surface:#FAFAF7;
+  --wall-a:#4E5F63;
+  --wall-b:#2E3B40;
+  --ink:#1B2220;
+  --muted:#56615D;
+  --faint:#9AA3A0;
+  --line:#D3D9D5;
+  --fill:#EEF1EE;
+  --accent:#2F6F5E;
+  --plum:#7B3B55;
+  --plum-fill:#F3E9ED;
+  --font-word:"Lora",Georgia,"Times New Roman",serif;
+  --font-ui:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#13181A;
+    --surface:#1C2224;
+    --wall-a:#2B383C;
+    --wall-b:#141C1F;
+    --ink:#E9EEEB;
+    --muted:#9AA5A1;
+    --faint:#6E7A77;
+    --line:#2A3134;
+    --fill:#232A2C;
+    --accent:#6FC6A8;
+    --plum:#D896B0;
+    --plum-fill:#2E2127;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#13181A;
+  --surface:#1C2224;
+  --wall-a:#2B383C;
+  --wall-b:#141C1F;
+  --ink:#E9EEEB;
+  --muted:#9AA5A1;
+  --faint:#6E7A77;
+  --line:#2A3134;
+  --fill:#232A2C;
+  --accent:#6FC6A8;
+  --plum:#D896B0;
+  --plum-fill:#2E2127;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font-ui);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:44px 72px;
+}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+a{color:var(--accent)}
+
+.wrap{max-width:720px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-word);text-wrap:balance;margin:0}
+p{margin:0}
+.prose{display:flex;flex-direction:column;gap:14px;max-width:64ch}
+
+/* ---- top ---- */
+.top h1{font-weight:600;font-size:clamp(2rem,7vw,2.9rem);letter-spacing:-.015em;line-height:1.1}
+.top .tag{margin-top:14px;max-width:52ch;color:var(--muted);font-size:1.05rem}
+.jump{display:flex;flex-wrap:wrap;gap:8px 22px;margin:26px 0 0;padding:0;list-style:none}
+.jump a{
+  font-family:var(--font-mono);font-size:.78rem;letter-spacing:.02em;color:var(--ink);
+  text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;
+}
+.jump a:hover{color:var(--accent)}
+
+/* ---- case study ---- */
+article{margin-top:76px;padding-top:34px;border-top:1px solid var(--ink);display:flex;flex-direction:column;gap:26px}
+.kicker{
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
+}
+article h2{font-weight:600;font-size:clamp(1.65rem,5vw,2.2rem);letter-spacing:-.01em;line-height:1.18;margin-top:8px}
+.lede{font-family:var(--font-word);font-size:1.18rem;line-height:1.55;max-width:56ch}
+article h3{font-weight:600;font-size:1.2rem;margin-top:10px}
+
+.meta{display:grid;grid-template-columns:7.2rem minmax(0,1fr);gap:10px 18px;margin:0;font-size:.93rem;border-top:1px solid var(--line);padding-top:16px}
+.meta dt{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.meta dd{margin:0}
+
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px}
+.fig{border-top:1px solid var(--line);padding-top:10px;min-width:0}
+.fig b{display:block;font-family:var(--font-word);font-weight:500;font-size:1.9rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.fig span{display:block;color:var(--muted);font-size:.86rem;margin-top:4px}
+
+.list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:10px;max-width:64ch}
+.list li::marker{color:var(--accent)}
+
+.pull{
+  font-family:var(--font-word);font-style:italic;font-size:1.35rem;line-height:1.45;
+  margin:4px 0;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:30em;
+}
+
+.script{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.script .row{padding:16px 18px;display:grid;gap:6px}
+.script .row + .row{border-top:1px solid var(--line)}
+.script .say{font-family:var(--font-word);font-size:1.15rem;line-height:1.4}
+.script .role{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+.script .why{color:var(--muted);font-size:.9rem;line-height:1.5}
+.script .foot{padding:12px 18px;background:var(--fill);color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+
+.weeks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.weeks li{padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0;border-top:1px solid var(--line);margin-top:-1px}
+.weeks .wk{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+.weeks .focus{font-family:var(--font-word);font-weight:600;line-height:1.3}
+.weeks .saw{font-size:.88rem;color:var(--muted);line-height:1.5}
+
+.note{color:var(--muted);font-size:.92rem;max-width:64ch}
+.foot-page{margin-top:80px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}
+
+/* ================= Quiet Streak prototype (scoped) ================= */
+.qs{display:flex;flex-direction:column;gap:14px}
+.qs .stage{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
+.qs .phone{
+  flex:0 0 302px;width:302px;max-width:100%;height:618px;border-radius:38px;
+  background:linear-gradient(170deg,var(--wall-a),var(--wall-b));
+  border:1px solid var(--line);box-shadow:0 18px 44px rgba(16,24,22,.22);
+  padding:10px;position:relative;overflow:hidden;
+}
+.qs .screen{
+  width:100%;height:100%;border-radius:29px;overflow:hidden;
+  display:flex;flex-direction:column;position:relative;
+  background:linear-gradient(170deg,var(--wall-a),var(--wall-b));color:#F2F5F3;
+}
+.qs .statusbar{display:flex;justify-content:space-between;align-items:center;padding:12px 18px 0;font-size:.68rem;letter-spacing:.04em;opacity:.78;font-variant-numeric:tabular-nums}
+.qs .lockclock{text-align:center;padding:26px 0 18px}
+.qs .lockclock .t{font-size:3.1rem;font-weight:400;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.qs .lockclock .d{font-size:.78rem;opacity:.72;margin-top:6px}
+.qs .widget-slot{padding:0 14px}
+.qs .widget{
+  background:var(--surface);color:var(--ink);border-radius:20px;padding:15px 16px 14px;
+  box-shadow:0 6px 18px rgba(10,16,15,.18);display:flex;flex-direction:column;gap:11px;min-height:188px;
+  transition:background .25s ease;
+}
+@media (prefers-reduced-motion:reduce){.qs .widget{transition:none}}
+.qs .w-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.qs .eyebrow{font-size:.6rem;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.qs .chip{font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;font-weight:600;padding:2px 7px;border-radius:999px;background:var(--fill);color:var(--accent)}
+.qs .word{font-family:var(--font-word);font-size:1.72rem;font-weight:500;letter-spacing:-.01em;line-height:1.1;margin:0}
+.qs .gloss{font-size:.82rem;color:var(--muted);margin:-4px 0 0}
+.qs .sentence{font-family:var(--font-word);font-size:.95rem;line-height:1.42;margin:0}
+.qs .sentence b{font-weight:600;color:var(--accent);font-style:normal}
+.qs .sentence-en{font-size:.78rem;color:var(--muted);margin:3px 0 0;line-height:1.4}
+.qs .tap-hint{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:.78rem;padding:6px 0}
+.qs .tap-hint .dot{width:6px;height:6px;border-radius:50%;background:var(--faint);flex:0 0 auto}
+.qs .tapzone{all:unset;display:block;width:100%;cursor:pointer;border-radius:10px}
+.qs .tapzone:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.qs .w-actions{display:flex;gap:8px;margin-top:auto}
+.qs .btn{flex:1;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:10px;padding:8px 10px;font-size:.8rem;font-weight:500}
+.qs .btn:hover{background:var(--fill)}
+.qs .btn-primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.qs .btn-primary:hover{filter:brightness(1.06);background:var(--accent)}
+.qs .progress{display:flex;align-items:center;gap:9px;padding-top:2px}
+.qs .ticks{display:flex;gap:4px;flex:0 0 auto}
+.qs .tick{width:13px;height:3px;border-radius:2px;background:var(--line)}
+.qs .tick.on{background:var(--accent)}
+.qs .progress .label{font-size:.68rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.qs .widget.gossip{background:var(--plum-fill)}
+.qs .widget.gossip .eyebrow{color:var(--plum)}
+.qs .gossip-line{font-family:var(--font-word);font-style:italic;font-size:1.12rem;line-height:1.38;margin:0;color:var(--plum)}
+.qs .gossip-en{font-size:.78rem;color:var(--muted);margin:5px 0 0}
+.qs .apps{margin-top:auto;padding:0 20px 8px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px 14px}
+.qs .app{display:flex;flex-direction:column;align-items:center;gap:5px}
+.qs .app i{display:block;width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.09)}
+.qs .app span{font-size:.56rem;opacity:.8;letter-spacing:.01em}
+.qs .dock{margin:0 12px 14px;padding:10px;border-radius:22px;background:rgba(255,255,255,.11);display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.qs .dock i{display:block;height:44px;border-radius:13px;background:rgba(255,255,255,.16)}
+.qs .swipebar{width:92px;height:4px;border-radius:2px;background:rgba(255,255,255,.4);margin:0 auto 10px}
+.qs .home{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
+.qs .home[hidden]{display:none}
+.qs .panel{flex:1 1 280px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.qs .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 16px 15px}
+.qs .card h4{font-family:var(--font-ui);font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:600}
+.qs .controls{display:flex;flex-wrap:wrap;gap:8px}
+.qs .controls .btn{flex:0 1 auto;min-width:112px}
+.qs .cnote{font-size:.8rem;color:var(--muted);margin:10px 0 0;line-height:1.45}
+.qs .logwrap{max-height:268px;overflow:auto;border:1px solid var(--line);border-radius:10px}
+.qs table{border-collapse:collapse;width:100%;font-family:var(--font-mono);font-size:.68rem}
+.qs thead th{position:sticky;top:0;background:var(--fill);color:var(--muted);text-align:left;padding:6px 8px;font-weight:500;letter-spacing:.03em;border-bottom:1px solid var(--line)}
+.qs tbody td{padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.qs tbody tr:last-child td{border-bottom:0}
+.qs td.time{color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.qs td.ev{color:var(--accent);white-space:nowrap}
+.qs td.ev.warn{color:var(--plum)}
+.qs td.detail{color:var(--muted)}
+.qs .empty{padding:14px 10px;font-family:var(--font-ui);font-size:.78rem;color:var(--muted)}
+.qs .legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:11px}
+.qs .legend span{font-size:.72rem;color:var(--muted)}
+.qs .legend b{color:var(--ink);font-weight:500}
+@media (max-width:700px){
+  .qs .stage{gap:20px}
+  .qs .phone{margin:0 auto}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Menna A. Awadallah</h1>
+    <p class="tag">I write systems software, and I like finding out what people need before I build. Three projects where I did that.</p>
+    <ul class="jump">
+      <li><a href="#praxipal">Praxipal and Luna</a></li>
+      <li><a href="#quiet-streak">The Quiet Streak</a></li>
+      <li><a href="#black-box">Black Box Thinking study</a></li>
+    </ul>
+  </header>
+
+  <!-- ============ 1. Praxipal ============ -->
+  <article id="praxipal">
+    <header>
+      <div class="kicker">Design thinking workshop · HPI d-school · September 2026</div>
+      <h2>Making an AI receptionist legible to patients</h2>
+    </header>
+    <p class="lede">Praxipal builds Luna, an AI assistant that answers phone calls for medical practices. In some practices over 80% of callers accept her. In others it is about 30%. Nobody could say why.</p>
+
+    <dl class="meta">
+      <dt>My role</dt><dd>Part of the problem investigation, helped design the interview questions and ran several interviews. Then led the redesign of Luna&rsquo;s call introduction, from script to test.</dd>
+      <dt>Team</dt><dd>Five students and a design thinking coach, over five days.</dd>
+      <dt>Partner</dt><dd>Praxipal, Germany.</dd>
+      <dt>Outcome</dt><dd>Praxipal added the new introduction to their own version for testing and saw promising early signs.</dd>
+    </dl>
+
+    <div class="prose">
+      <h3>The problem</h3>
+      <p>At the start of every call, Luna asks the caller to agree to speak with an AI. Praxipal counts acceptance as the share of callers who say yes. Their analysis of 144 practices found almost no signal in patient age, insurance mix, town size or geography, and the settings a practice can change are nearly identical everywhere.</p>
+    </div>
+    <div class="figs">
+      <div class="fig"><b>80% to 30%</b><span>acceptance range across practices</span></div>
+      <div class="fig"><b>144</b><span>practices analysed, no demographic explanation</span></div>
+      <div class="fig"><b>~70%</b><span>of the variance outside anything measured</span></div>
+    </div>
+    <p class="note">Our brief: how might we increase patient acceptance when interacting with an AI voice assistant in medical practices?</p>
+
+    <div class="prose">
+      <h3>How we looked into it</h3>
+      <p>We called Luna ourselves over two days and compared her with other AI voice products. Then we ran nine interviews: seven patients aged 20 to 90, an orthodontist&rsquo;s assistant and a Praxipal representative. Several patients were relatives and friends, recruited within a day, so we treat what we found as directional.</p>
+      <ul class="list">
+        <li>Three of seven patients, in different age groups, raised data privacy without being asked. The practice had never heard it from callers.</li>
+        <li>Patients accepted AI for simple tasks. What they objected to was being stuck with it when the task was not simple, and many were unsure what Luna could and could not do.</li>
+        <li>The practice assistant said 10 to 15% of callers refuse to give a name and date of birth, which ends the booking.</li>
+      </ul>
+    </div>
+
+    <p class="pull">Patients do not need Luna to be more human. They need the rules of the conversation to be legible before and during the call.</p>
+
+    <div class="prose">
+      <p>Every need we dot-voted pointed the same way: a guaranteed human fallback, clarity about scope, knowing why Luna is used. These are information problems. The cheapest places to solve them are before the call and in its first seconds.</p>
+
+      <h3>What I designed: a new opening for every call</h3>
+      <p>Praxipal already lets practices change the introduction, so this needed no engineering on the voice model. Two things are fixed by law. Luna must say she is an AI, and she must ask for the caller&rsquo;s agreement. I built the rest around those, and it had to fit in about ten seconds, since Luna is billed by the minute and long-windedness was the most common complaint we heard.</p>
+    </div>
+
+    <div class="script" role="group" aria-label="The new call introduction, annotated">
+      <div class="row">
+        <span class="role">Inform</span>
+        <p class="say">&ldquo;This is Luna, the AI booking assistant.&rdquo;</p>
+        <p class="why">Meets the legal duty to say she is an AI, and says what she is for, in one breath. The name stays, but never on its own.</p>
+      </div>
+      <div class="row">
+        <span class="role">Reassure</span>
+        <p class="say">&ldquo;I&rsquo;m happy to help with booking and questions on data protection.&rdquo;</p>
+        <p class="why">Patients brought up privacy unprompted, so the intro raises it first. An open invitation shows the question is welcome.</p>
+      </div>
+      <div class="row">
+        <span class="role">Hand off</span>
+        <p class="say">&ldquo;For complex questions, I&rsquo;ll redirect you to the practice team.&rdquo;</p>
+        <p class="why">Names the limit and the way out together, which is what patients said they needed.</p>
+      </div>
+      <div class="row">
+        <span class="role">Ask consent</span>
+        <p class="say">&ldquo;May I help you?&rdquo;</p>
+        <p class="why">Meets the legal duty to ask for the caller&rsquo;s agreement before going on.</p>
+      </div>
+      <div class="foot">Wording is the whole idea, so I wrote it first as a script, then recorded it with a voice model in an ElevenLabs instance Praxipal gave us, so testers heard it the way a patient would.</div>
+    </div>
+
+    <div class="prose">
+      <h3>What testing showed</h3>
+      <p>We tested on day four with coaches from other teams and showed it to our contact at Praxipal. Coaches liked that it set expectations. They also raised two problems. A caller can skip past an introduction they have heard before, and the name &ldquo;Luna&rdquo; makes her sound personal at the moment we want to say she is not a person. They suggested stating the request first.</p>
+      <p>Praxipal&rsquo;s contact found the introduction interesting and added it to their own version to test. We saw promising early signs.</p>
+      <p class="note">Teammates also built a second prototype, a life-size cardboard Luna for waiting rooms. Testers found it awkward to phone from a waiting room, which taught us that physical material should build awareness, not ask for a call on the spot. I did not work on that one.</p>
+
+      <h3>What comes next</h3>
+      <p>Run the new introduction as an A/B test across two comparable practices and compare completed bookings with abandoned calls. First the team needs to agree what a successful call is. Because Luna is billed by the minute, call length cannot stand in for acceptance. We suggested a completed booking or a handoff to a human.</p>
+    </div>
+  </article>
+
+  <!-- ============ 2. Quiet Streak ============ -->
+  <article id="quiet-streak">
+    <header>
+      <div class="kicker">Product prototype · Make Your Case, HPI d-school · 2026, in progress</div>
+      <h2>The Quiet Streak</h2>
+    </header>
+    <p class="lede">A phone widget for language learners that counts the words you recalled, not the days you opened the app.</p>
+
+    <dl class="meta">
+      <dt>My role</dt><dd>Concept, interaction design and the working prototype below.</dd>
+      <dt>Context</dt><dd>A course on driving technical design decisions with design thinking.</dd>
+      <dt>Status</dt><dd>Tested with friends and colleagues, testing and refining is work in progress.</dd>
+    </dl>
+
+    <div class="prose">
+      <h3>The idea</h3>
+      <p>A streak rewards showing up. Learning needs repeated exposure to new words and a way to check what stuck. The widget sits on the lock screen and home screen, so a learner meets words during the day without opening the app, and the number that counts is words recalled.</p>
+
+      <h3>Decisions built into the prototype</h3>
+      <ul class="list">
+        <li><strong>New words do not score.</strong> A new word appears with an example sentence. Seeing it once is exposure, so the only action is &ldquo;Noted&rdquo;.</li>
+        <li><strong>Known words start hidden.</strong> The learner taps to see the word used, then answers &ldquo;I knew it&rdquo; or &ldquo;Not yet&rdquo;. Only honest recall counts, and &ldquo;Not yet&rdquo; brings the word back three cards later.</li>
+        <li><strong>Glances are not learning.</strong> A card nobody touches rotates away after five glances and goes back into the queue.</li>
+        <li><strong>The learner sets the bar.</strong> At today&rsquo;s target of five recalled words, the widget asks whether to raise it by one or keep it.</li>
+        <li><strong>A small story carries the words.</strong> Every fifth word, a line of gossip in Spanish with a translation gives a reason to keep going. All the vocabulary comes from that one story.</li>
+      </ul>
+
+      <h3>Try it</h3>
+      <p>Press <em>Unlock phone</em> to simulate picking the phone up. Tap the card, answer, and watch the log on the right. Press <em>Unlock</em> a few times without answering to see a card rotate away.</p>
+    </div>
+
+    <div class="qs" id="qs-root">
+      <div class="stage">
+        <div class="phone">
+          <div class="screen" id="qs-screen">
+            <div class="statusbar"><span id="qs-sb-time">9:41</span><span>5G ▮</span></div>
+
+            <div id="qs-lock-extra" class="lockclock">
+              <div class="t" id="qs-lock-time">9:41</div>
+              <div class="d" id="qs-lock-date">Tuesday, 20 October</div>
+            </div>
+
+            <div class="widget-slot" id="qs-slot"></div>
+
+            <div id="qs-home-extra" class="home" hidden>
+              <div class="apps">
+                <div class="app"><i></i><span>Messages</span></div>
+                <div class="app"><i></i><span>Camera</span></div>
+                <div class="app"><i></i><span>Notes</span></div>
+                <div class="app"><i></i><span>Maps</span></div>
+                <div class="app"><i></i><span>Music</span></div>
+                <div class="app"><i></i><span>Clock</span></div>
+                <div class="app"><i></i><span>Photos</span></div>
+                <div class="app"><i></i><span>Settings</span></div>
+              </div>
+              <div class="dock"><i></i><i></i><i></i><i></i></div>
+              <div class="swipebar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="card">
+            <h4>Test controls</h4>
+            <div class="controls">
+              <button class="btn btn-primary" id="qs-toggle" type="button">Unlock phone</button>
+              <button class="btn" id="qs-reset" type="button">Reset session</button>
+              <button class="btn" id="qs-copy" type="button">Copy log</button>
+            </div>
+            <p class="cnote">Each unlock counts as one glance at the widget.</p>
+          </div>
+
+          <div class="card">
+            <h4>Observation log</h4>
+            <div class="logwrap">
+              <table>
+                <thead><tr><th>Time</th><th>Event</th><th>Word</th><th>Detail</th></tr></thead>
+                <tbody id="qs-log"><tr><td colspan="4" class="empty">Nothing yet. Unlock the phone to begin.</td></tr></tbody>
+              </table>
+            </div>
+            <div class="legend">
+              <span><b id="qs-st-recalled">0</b> recalled</span>
+              <span><b id="qs-st-target">5</b> today&rsquo;s bar</span>
+              <span><b id="qs-st-glances">0</b> glances</span>
+              <span><b id="qs-st-passive">0</b> rotated untouched</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>How I am testing it</h3>
+      <p>The prototype keeps an observation log of glances, taps, time to answer and cards that rotated away untouched, so each test session leaves evidence to read. I have tested it with friends and colleagues. Testing and refining is work in progress.</p>
+    </div>
+  </article>
+
+  <!-- ============ 3. Black Box ============ -->
+  <article id="black-box">
+    <header>
+      <div class="kicker">Research study · Lean Software Development · Innopolis University · 2023</div>
+      <h2>Can small weekly goals make student software teams work better?</h2>
+    </header>
+    <p class="lede">We tested an idea from Matthew Syed&rsquo;s <em>Black Box Thinking</em> on six student teams over five weeks, and measured what changed.</p>
+
+    <dl class="meta">
+      <dt>My role</dt><dd>Co-author with two classmates. I worked across the whole study, made most of the design decisions and wrote much of the paper.</dd>
+      <dt>Method</dt><dd>Spike experiment with six student software teams, five weeks.</dd>
+      <dt>Status</dt><dd>Course paper, not submitted for publication.</dd>
+    </dl>
+
+    <div class="prose">
+      <h3>The question</h3>
+      <p>Aviation improves by studying its failures. One idea from the book is marginal gains: split a process into small parts, improve one part at a time and track whether the whole gets better. We asked whether that works for people building software together.</p>
+
+      <h3>How we ran it</h3>
+      <p>Week one was a baseline with no goal. In each later week, every team focused on one part of its process. Teams tracked member satisfaction, time in organisational meetings, test coverage and task counts. Satisfaction was our main measure, because it is the one that relates the practice directly to the people doing it.</p>
+    </div>
+
+    <ol class="weeks" aria-label="The five weeks and what each showed">
+      <li><span class="wk">Week 1</span><span class="focus">Baseline, no goal</span><span class="saw">Satisfaction varied the most between teams.</span></li>
+      <li><span class="wk">Week 2</span><span class="focus">Organisational decisions</span><span class="saw">Meeting time went up first. The shortest meeting time rose by more than 50%.</span></li>
+      <li><span class="wk">Week 3</span><span class="focus">Communication and knowledge sharing</span><span class="saw">Satisfaction kept rising and the spread between teams narrowed.</span></li>
+      <li><span class="wk">Week 4</span><span class="focus">Documentation and UI/UX</span><span class="saw">Reported test coverage dipped as teams widened what they counted, while writing fuller tests.</span></li>
+      <li><span class="wk">Week 5</span><span class="focus">Testing and code quality</span><span class="saw">Highest average satisfaction and the smallest spread. Test coverage rose significantly.</span></li>
+    </ol>
+
+    <div class="prose">
+      <h3>What we found</h3>
+      <p>By the end, member satisfaction and test coverage had risen and meeting time had fallen. Teams that spent week two on organisation reported needing less meeting time afterwards, and team leads said they had more time to write code.</p>
+      <p>We left task counts out of the analysis. The number of tasks reflects how a team chooses to split work, not how hard the work was, so adding them across teams would have been misleading.</p>
+
+      <h3>Limits, and what I would change</h3>
+      <p>Six teams over five weeks, with one baseline week and no control group. We presented the result as insight, not proof. I would add a control group of teams with no weekly goal, run it for longer and include more teams, so the baseline week is not the only comparison.</p>
+    </div>
+  </article>
+
+  <p class="foot-page">Contact details are on my resume.</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var WORDS = [
+    {es:"chisme", en:"gossip", s:"El mejor {chisme} siempre llega tarde.", t:"The best gossip always arrives late.", status:"new"},
+    {es:"anoche", en:"last night", s:"Nadie sabe qué pasó {anoche}.", t:"Nobody knows what happened last night.", status:"review"},
+    {es:"novio", en:"boyfriend", s:"Su {novio} no sabía nada.", t:"Her boyfriend didn't know a thing.", status:"review"},
+    {es:"madrugada", en:"the small hours", s:"Volvió a casa de {madrugada}.", t:"He came home in the small hours.", status:"new"},
+    {es:"mentira", en:"a lie", s:"Fue una {mentira} pequeña, al principio.", t:"It was a small lie, at first.", status:"review"},
+    {es:"vecino", en:"neighbour", s:"El {vecino} lo vio todo desde la ventana.", t:"The neighbour saw it all from the window.", status:"review"},
+    {es:"enterarse", en:"to find out", s:"Se va a {enterarse} tarde o temprano.", t:"She's going to find out sooner or later.", status:"new"},
+    {es:"apenas", en:"barely", s:"{Apenas} se hablan desde entonces.", t:"They barely speak since then.", status:"review"},
+    {es:"desconocido", en:"a stranger", s:"Le habló como a un {desconocido}.", t:"She spoke to him like a stranger.", status:"review"},
+    {es:"callar", en:"to keep quiet", s:"Mejor {callar} que explicarlo.", t:"Better to keep quiet than explain it.", status:"review"},
+    {es:"dinero", en:"money", s:"Nadie pregunta de dónde salió el {dinero}.", t:"Nobody asks where the money came from.", status:"review"},
+    {es:"playa", en:"the beach", s:"Dijo que estaba enferma. Estaba en la {playa}.", t:"She said she was sick. She was at the beach.", status:"review"}
+  ];
+
+  var GOSSIP = [
+    {s:"¿Y el vecino? Mirando. Siempre mirando.", t:"And the neighbour? Watching. Always watching."},
+    {s:"Tres de la madrugada. Otra vez.", t:"Three in the morning. Again."},
+    {s:"Dijo que no sabía nada del dinero.", t:"He said he knew nothing about the money."},
+    {s:"Ella ya se enteró. No ha dicho nada.", t:"She already found out. She hasn't said a word."}
+  ];
+
+  var slot = document.getElementById('qs-slot');
+  var lockExtra = document.getElementById('qs-lock-extra');
+  var homeExtra = document.getElementById('qs-home-extra');
+  var toggleBtn = document.getElementById('qs-toggle');
+  var logBody = document.getElementById('qs-log');
+  var S;
+
+  function fresh(){
+    return {
+      locked:true, qi:0, queue:WORDS.map(function(_,i){return i;}),
+      mode:'card', revealed:false, glances:0, viewCount:0, shownAt:Date.now(),
+      recalled:0, target:5, interactions:0, gossipIdx:0, passive:0,
+      log:[], t0:Date.now()
+    };
+  }
+
+  function current(){ return WORDS[S.queue[S.qi % S.queue.length]]; }
+
+  function stamp(){
+    var ms = Date.now() - S.t0;
+    var m = Math.floor(ms/60000), s = Math.floor(ms/1000)%60;
+    return (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }
+
+  function log(ev, word, detail, warn){
+    S.log.push({time:stamp(), ev:ev, word:word||'', detail:detail||'', warn:!!warn});
+    renderLog();
+  }
+
+  function esc(x){
+    return String(x).replace(/[&<>"]/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+    });
+  }
+
+  function renderLog(){
+    if(!S.log.length){
+      logBody.innerHTML = '<tr><td colspan="4" class="empty">Nothing yet. Unlock the phone to begin.</td></tr>';
+    } else {
+      var rows = '';
+      for(var i=S.log.length-1;i>=0;i--){
+        var r = S.log[i];
+        rows += '<tr><td class="time">'+r.time+'</td><td class="ev'+(r.warn?' warn':'')+'">'+esc(r.ev)+
+                '</td><td>'+esc(r.word)+'</td><td class="detail">'+esc(r.detail)+'</td></tr>';
+      }
+      logBody.innerHTML = rows;
+    }
+    document.getElementById('qs-st-recalled').textContent = S.recalled;
+    document.getElementById('qs-st-target').textContent = S.target;
+    document.getElementById('qs-st-glances').textContent = S.glances;
+    document.getElementById('qs-st-passive').textContent = S.passive;
+  }
+
+  function sentenceHTML(w){
+    return esc(w.s).replace(/\{([^}]+)\}/, function(_,m){ return '<b>'+m+'</b>'; });
+  }
+
+  function ticks(){
+    var out = '';
+    for(var i=0;i<S.target;i++) out += '<span class="tick'+(i<S.recalled?' on':'')+'"></span>';
+    return '<div class="progress"><div class="ticks">'+out+'</div>'+
+           '<span class="label">'+S.recalled+' of '+S.target+' recalled today</span></div>';
+  }
+
+  function render(){
+    var html = '';
+    if(S.mode === 'gossip'){
+      var g = GOSSIP[S.gossipIdx % GOSSIP.length];
+      html = '<div class="widget gossip">'+
+        '<div class="w-top"><span class="eyebrow">mientras tanto…</span></div>'+
+        '<p class="gossip-line">'+esc(g.s)+'</p>'+
+        '<p class="gossip-en">'+esc(g.t)+'</p>'+
+        '<div class="w-actions"><button class="btn" type="button" data-act="gossip-next">Go on then</button></div>'+
+      '</div>';
+    } else if(S.mode === 'target'){
+      html = '<div class="widget">'+
+        '<div class="w-top"><span class="eyebrow">that\'s today</span></div>'+
+        '<p class="word" style="font-size:1.3rem">'+S.recalled+' words came back to you.</p>'+
+        '<p class="gloss">Want a slightly higher bar tomorrow, or is this the right size?</p>'+
+        '<div class="w-actions">'+
+          '<button class="btn btn-primary" type="button" data-act="raise">Try '+(S.target+1)+'</button>'+
+          '<button class="btn" type="button" data-act="keep">Stay at '+S.target+'</button>'+
+        '</div></div>';
+    } else {
+      var w = current();
+      var isNew = w.status === 'new';
+      var head = '<div class="w-top"><span class="eyebrow">on your phone</span>'+
+                 (isNew ? '<span class="chip">new</span>' : '')+'</div>';
+      var body, actions;
+      if(isNew || S.revealed){
+        body = '<p class="word">'+esc(w.es)+'</p>'+
+               '<p class="gloss">'+esc(w.en)+'</p>'+
+               '<p class="sentence">'+sentenceHTML(w)+'</p>'+
+               '<p class="sentence-en">'+esc(w.t)+'</p>';
+        actions = isNew
+          ? '<div class="w-actions"><button class="btn" type="button" data-act="seen">Noted</button></div>'
+          : '<div class="w-actions"><button class="btn btn-primary" type="button" data-act="got">I knew it</button>'+
+            '<button class="btn" type="button" data-act="not">Not yet</button></div>';
+      } else {
+        body = '<button class="tapzone" type="button" data-act="reveal">'+
+               '<p class="word">'+esc(w.es)+'</p>'+
+               '<div class="tap-hint"><span class="dot"></span>Tap to see it used</div>'+
+               '</button>';
+        actions = '';
+      }
+      html = '<div class="widget">'+head+body+actions+ticks()+'</div>';
+    }
+    slot.innerHTML = html;
+  }
+
+  function advance(){
+    S.qi++;
+    S.revealed = false;
+    S.viewCount = 1;
+    S.shownAt = Date.now();
+    S.mode = 'card';
+    render();
+  }
+
+  function reinsert(idx, gap){
+    S.queue.splice((S.qi + gap) % (S.queue.length+1), 0, idx);
+  }
+
+  function dwell(){ return ((Date.now() - S.shownAt)/1000).toFixed(1) + 's since shown'; }
+
+  function afterInteraction(){
+    S.interactions++;
+    if(S.recalled === S.target && S.mode !== 'target'){
+      log('bar reached', '', 'target of '+S.target+' met');
+      S.mode = 'target';
+      render();
+      return;
+    }
+    if(S.interactions % 5 === 0){
+      S.gossipIdx++;
+      S.mode = 'gossip';
+      log('gossip card', '', 'shown after '+S.interactions+' words');
+      render();
+      return;
+    }
+    advance();
+  }
+
+  function glance(){
+    S.glances++;
+    if(S.mode !== 'card'){ renderLog(); return; }
+    S.viewCount++;
+    var w = current();
+    log('glance', w.es, 'glance '+S.viewCount+' of 5');
+    if(S.viewCount >= 5){
+      S.passive++;
+      log('rotated untouched', w.es, 'five glances, no interaction — requeued', true);
+      reinsert(S.queue[S.qi % S.queue.length], 2);
+      advance();
+    }
+  }
+
+  slot.addEventListener('click', function(e){
+    var el = e.target.closest('[data-act]');
+    if(!el) return;
+    var act = el.getAttribute('data-act');
+    var w = current();
+
+    if(act === 'reveal'){
+      S.revealed = true;
+      log('tapped to reveal', w.es, dwell());
+      render();
+    } else if(act === 'got'){
+      S.recalled++;
+      log('recalled', w.es, dwell());
+      afterInteraction();
+    } else if(act === 'not'){
+      log('not yet', w.es, 'requeued, 3 cards on');
+      reinsert(S.queue[S.qi % S.queue.length], 3);
+      afterInteraction();
+    } else if(act === 'seen'){
+      log('new word seen', w.es, 'exposure only — does not count');
+      afterInteraction();
+    } else if(act === 'gossip-next'){
+      advance();
+    } else if(act === 'raise'){
+      S.target++;
+      log('bar raised', '', 'tomorrow: '+S.target);
+      S.recalled = 0;
+      advance();
+    } else if(act === 'keep'){
+      log('bar kept', '', 'stays at '+S.target);
+      S.recalled = 0;
+      advance();
+    }
+  });
+
+  toggleBtn.addEventListener('click', function(){
+    S.locked = !S.locked;
+    lockExtra.hidden = !S.locked;
+    homeExtra.hidden = S.locked;
+    toggleBtn.textContent = S.locked ? 'Unlock phone' : 'Lock phone';
+    if(!S.locked){ log('phone unlocked'); glance(); }
+    else { log('phone locked'); }
+  });
+
+  document.getElementById('qs-reset').addEventListener('click', function(){
+    S = fresh();
+    lockExtra.hidden = false;
+    homeExtra.hidden = true;
+    toggleBtn.textContent = 'Unlock phone';
+    render(); renderLog();
+  });
+
+  document.getElementById('qs-copy').addEventListener('click', function(){
+    var text = 'time\tevent\tword\tdetail\n' + S.log.map(function(r){
+      return r.time+'\t'+r.ev+'\t'+r.word+'\t'+r.detail;
+    }).join('\n');
+    var btn = this;
+    function done(msg){ btn.textContent = msg; setTimeout(function(){ btn.textContent='Copy log'; }, 1600); }
+    try{
+      navigator.clipboard.writeText(text).then(function(){ done('Copied'); },
+        function(){ done('Copy not available here'); });
+    }catch(err){ done('Copy not available here'); }
+  });
+
+  function clock(){
+    var d = new Date();
+    var h = d.getHours(), m = d.getMinutes();
+    var hh = h % 12 === 0 ? 12 : h % 12;
+    var str = hh + ':' + (m<10?'0':'') + m;
+    document.getElementById('qs-sb-time').textContent = str;
+    document.getElementById('qs-lock-time').textContent = str;
+    document.getElementById('qs-lock-date').textContent =
+      d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+  }
+
+  S = fresh();
+  clock();
+  setInterval(clock, 20000);
+  render();
+  renderLog();
+})();
+</script>
+</body>
+</html>
